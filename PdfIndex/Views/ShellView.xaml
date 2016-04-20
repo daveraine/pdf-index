@@ -9,24 +9,31 @@
         xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
         mc:Ignorable="d"
         Dialog:DialogParticipation.Register="{Binding}"
-        Title="PDF Index" Height="400" Width="600" TitleCaps="False" BorderBrush="{StaticResource AccentColorBrush}">
+        Title="PDF Index" Height="600" Width="800" TitleCaps="False" BorderBrush="{StaticResource AccentColorBrush}">
     <Controls:MetroContentControl>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
-            <ListView x:Name="Counties" Grid.Column="0"
+            <ListBox x:Name="Counties" Grid.Column="0"
                       SelectionMode="Single">
-                
-            </ListView>
+            </ListBox>
             <DataGrid x:Name="Records" Grid.Column="1"
-                      AutoGenerateColumns="True" IsReadOnly="True">
+                      AutoGenerateColumns="False" IsReadOnly="True"
+                      CanUserReorderColumns="False"
+                      CanUserResizeColumns="False"
+                      CanUserResizeRows="False"
+                      CanUserSortColumns="False">
                 <DataGrid.RowStyle>
                     <Style TargetType="DataGridRow" BasedOn="{StaticResource MetroDataGridRow}">
                         <Setter Property="cal:Message.Attach" Value="[MouseDoubleClick] = [Action RowSelect($dataContext)]"/>
                     </Style>
                 </DataGrid.RowStyle>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Title}" Header="Title" Width="2*"/>
+                    <DataGridTextColumn Binding="{Binding Range}" Header="Date Range" Width="1*"/>
+                </DataGrid.Columns>
             </DataGrid>
         </Grid>
     </Controls:MetroContentControl>
