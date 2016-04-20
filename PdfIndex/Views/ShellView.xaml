@@ -7,14 +7,25 @@
         xmlns:cal="http://www.caliburnproject.org"
         xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d"
-        Title="PDF Index" Height="400" Width="600" TitleCaps="False">
-    <Grid>
-        <DataGrid x:Name="Records" AutoGenerateColumns="True" IsReadOnly="True">
-            <DataGrid.RowStyle>
-                <Style TargetType="DataGridRow" BasedOn="{StaticResource MetroDataGridRow}">
-                    <Setter Property="cal:Message.Attach" Value="[MouseDoubleClick] = [Action RowSelect($dataContext)]"/>
-                </Style>
-            </DataGrid.RowStyle>
-        </DataGrid>
-    </Grid>
+        Title="PDF Index" Height="400" Width="600" TitleCaps="False" BorderBrush="{StaticResource AccentColorBrush}">
+    <Controls:MetroContentControl>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+            <ListView x:Name="Counties" Grid.Column="0"
+                      SelectionMode="Single">
+                
+            </ListView>
+            <DataGrid x:Name="Records" Grid.Column="1"
+                      AutoGenerateColumns="True" IsReadOnly="True">
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow" BasedOn="{StaticResource MetroDataGridRow}">
+                        <Setter Property="cal:Message.Attach" Value="[MouseDoubleClick] = [Action RowSelect($dataContext)]"/>
+                    </Style>
+                </DataGrid.RowStyle>
+            </DataGrid>
+        </Grid>
+    </Controls:MetroContentControl>
 </Controls:MetroWindow>
