@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using MahApps.Metro.Controls.Dialogs;
 using PdfIndex.Infrastructure;
 using PdfIndex.Services;
 using PdfIndex.ViewModels;
@@ -22,6 +23,7 @@ namespace PdfIndex
             _container.Singleton<IWindowManager, WindowManager>();
             _container.Singleton<IEventAggregator, EventAggregator>();
             _container.Singleton<IPdfRecordRepository, ExcelIndexPdfRecordRepository>();
+            _container.Instance<IDialogCoordinator>(DialogCoordinator.Instance);
             _container.PerRequest<ShellViewModel>();
         }
 
