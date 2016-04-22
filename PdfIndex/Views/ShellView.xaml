@@ -9,17 +9,33 @@
         xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
         mc:Ignorable="d"
         Dialog:DialogParticipation.Register="{Binding}"
-        Title="PDF Index" Height="600" Width="800" TitleCaps="False" BorderBrush="{StaticResource AccentColorBrush}">
+        Title="PDF Index" Height="600" MinHeight="600" Width="800" MinWidth="800" TitleCaps="False" BorderBrush="{StaticResource AccentColorBrush}">
     <Controls:MetroContentControl>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="250" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <ListBox x:Name="Categories" Grid.Column="0"
-                      SelectionMode="Single">
+                     SelectionMode="Single"
+                     Background="{StaticResource GrayBrush10}">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MetroListBoxItem}">
+                        <Setter Property="ContentTemplate">
+                            <Setter.Value>
+                                <DataTemplate>
+                                    <StackPanel Margin="10,15">
+                                        <TextBlock Text="{Binding}" FontSize="16" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
             </ListBox>
-            <ContentControl x:Name="ActiveItem" Grid.Column="1" />
+            <ScrollViewer Grid.Column="1">
+                <ContentControl x:Name="ActiveItem" Margin="10" Width="500" HorizontalAlignment="Left" />
+            </ScrollViewer>
         </Grid>
     </Controls:MetroContentControl>
 </Controls:MetroWindow>

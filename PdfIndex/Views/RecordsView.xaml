@@ -6,23 +6,43 @@
              xmlns:local="clr-namespace:PdfIndex.Views"
              xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300"
+             ScrollViewer.CanContentScroll="True">
+    <UserControl.Resources>
+
+        <DataTemplate x:Key="Unselected">
+            <StackPanel Margin="5">
+                <TextBlock Text="{Binding Title}" FontSize="16" />
+                <TextBlock Text="{Binding Description}" FontSize="16" />
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="Selected">
+            <Grid Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0">
+                    <TextBlock Text="{Binding Title}" FontSize="16" />
+                    <TextBlock Text="{Binding Description}" FontSize="16" />
+                </StackPanel>
+                <Button Grid.Row="1" Content="Open" HorizontalAlignment="Right"
+                        cal:Message.Attach="[Click] = [Action RowSelect($dataContext)]"/>
+            </Grid>
+        </DataTemplate>
+
+        <Style TargetType="{x:Type ListBoxItem}" x:Key="ContainerStyle" BasedOn="{StaticResource MetroListBoxItem}">
+            <Setter Property="ContentTemplate" Value="{StaticResource Unselected}" />
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="ContentTemplate" Value="{StaticResource Selected}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+    </UserControl.Resources>
     <Grid>
-        <DataGrid x:Name="Records" Grid.Column="1"
-                      AutoGenerateColumns="False" IsReadOnly="True"
-                      CanUserReorderColumns="False"
-                      CanUserResizeColumns="False"
-                      CanUserResizeRows="False"
-                      CanUserSortColumns="False">
-            <DataGrid.RowStyle>
-                <Style TargetType="DataGridRow" BasedOn="{StaticResource MetroDataGridRow}">
-                    <Setter Property="cal:Message.Attach" Value="[MouseDoubleClick] = [Action RowSelect($dataContext)]"/>
-                </Style>
-            </DataGrid.RowStyle>
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Title}" Header="Title" Width="2*"/>
-                <DataGridTextColumn Binding="{Binding Description}" Header="Date Range" Width="1*"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <ListBox ItemsSource="{Binding Records}" ItemContainerStyle="{StaticResource ContainerStyle}" />
     </Grid>
 </UserControl>
