@@ -1,7 +1,7 @@
 ﻿using Caliburn.Micro;
 using MahApps.Metro.Controls.Dialogs;
 using PdfIndex.Infrastructure;
-using PdfIndex.Services;
+using PdfIndex.Core;
 using PdfIndex.ViewModels;
 using System;
 using System.Collections.Generic;

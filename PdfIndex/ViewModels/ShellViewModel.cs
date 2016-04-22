@@ -1,12 +1,11 @@
-﻿using Caliburn.Micro;
-using MahApps.Metro.Controls.Dialogs;
-using PdfIndex.Models;
-using PdfIndex.Services;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Caliburn.Micro;
+using MahApps.Metro.Controls.Dialogs;
+using PdfIndex.Core;
 
 namespace PdfIndex.ViewModels
 {

@@ -1,7 +1,7 @@
-﻿using PdfIndex.Models;
+﻿using PdfIndex.Core;
 using System.Collections.Generic;
 
-namespace PdfIndex.Services
+namespace PdfIndex.Core
 {
     public interface IPdfRecordRepository
     {

@@ -1,9 +1,8 @@
-﻿using PdfIndex.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using PdfIndex.Models;
 using Excel;
 using System.IO;
+using PdfIndex.Core;
 
 namespace PdfIndex.Infrastructure
 {

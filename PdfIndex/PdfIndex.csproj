@@ -87,8 +87,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Infrastructure\ExcelIndexPdfRecordRepository.cs" />
-    <Compile Include="Models\PdfRecord.cs" />
-    <Compile Include="Services\IPdfRecordRepository.cs" />
+    <Compile Include="Core\PdfRecord.cs" />
+    <Compile Include="Core\IPdfRecordRepository.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>

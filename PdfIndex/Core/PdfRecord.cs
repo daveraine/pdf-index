@@ -1,4 +1,4 @@
-﻿namespace PdfIndex.Models
+﻿namespace PdfIndex.Core
 {
     public class PdfRecord
     {
