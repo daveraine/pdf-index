@@ -19,22 +19,7 @@
             <ListBox x:Name="Categories" Grid.Column="0"
                       SelectionMode="Single">
             </ListBox>
-            <DataGrid x:Name="Records" Grid.Column="1"
-                      AutoGenerateColumns="False" IsReadOnly="True"
-                      CanUserReorderColumns="False"
-                      CanUserResizeColumns="False"
-                      CanUserResizeRows="False"
-                      CanUserSortColumns="False">
-                <DataGrid.RowStyle>
-                    <Style TargetType="DataGridRow" BasedOn="{StaticResource MetroDataGridRow}">
-                        <Setter Property="cal:Message.Attach" Value="[MouseDoubleClick] = [Action RowSelect($dataContext)]"/>
-                    </Style>
-                </DataGrid.RowStyle>
-                <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Title}" Header="Title" Width="2*"/>
-                    <DataGridTextColumn Binding="{Binding Description}" Header="Date Range" Width="1*"/>
-                </DataGrid.Columns>
-            </DataGrid>
+            <ContentControl x:Name="ActiveItem" Grid.Column="1" />
         </Grid>
     </Controls:MetroContentControl>
 </Controls:MetroWindow>
