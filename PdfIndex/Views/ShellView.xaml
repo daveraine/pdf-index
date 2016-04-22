@@ -16,7 +16,7 @@
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
-            <ListBox x:Name="Counties" Grid.Column="0"
+            <ListBox x:Name="Categories" Grid.Column="0"
                       SelectionMode="Single">
             </ListBox>
             <DataGrid x:Name="Records" Grid.Column="1"
@@ -32,7 +32,7 @@
                 </DataGrid.RowStyle>
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Title}" Header="Title" Width="2*"/>
-                    <DataGridTextColumn Binding="{Binding Range}" Header="Date Range" Width="1*"/>
+                    <DataGridTextColumn Binding="{Binding Description}" Header="Date Range" Width="1*"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

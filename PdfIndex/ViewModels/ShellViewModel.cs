@@ -19,7 +19,7 @@ namespace PdfIndex.ViewModels
         {
             _dialogs = dialogs;
             _allRecords = repository.GetRecords();
-            Counties = _allRecords.Select(x => x.County).Distinct();
+            Categories = _allRecords.Select(x => x.Category).Distinct();
         }
 
         public async Task RowSelect(PdfRecord record)
@@ -35,16 +35,16 @@ namespace PdfIndex.ViewModels
             }
         }
 
-        private string _selectedCounty;
-        public string SelectedCounty
+        private string _selectedCategory;
+        public string SelectedCategory
         {
-            get { return _selectedCounty; }
+            get { return _selectedCategory; }
             set
             {
-                _selectedCounty = value;
-                NotifyOfPropertyChange(() => SelectedCounty);
+                _selectedCategory = value;
+                NotifyOfPropertyChange(() => SelectedCategory);
 
-                Records = _allRecords.Where(x => x.County == _selectedCounty);
+                Records = _allRecords.Where(x => x.Category == _selectedCategory);
             }
         }
 
@@ -59,6 +59,6 @@ namespace PdfIndex.ViewModels
             }
         }
 
-        public IEnumerable<string> Counties { get; set; }
+        public IEnumerable<string> Categories { get; set; }
     }
 }

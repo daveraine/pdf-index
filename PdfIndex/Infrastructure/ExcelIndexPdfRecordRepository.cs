@@ -21,8 +21,8 @@ namespace PdfIndex.Infrastructure
                     yield return new PdfRecord
                     {
                         Title = reader.GetString(0),
-                        County = reader.GetString(1),
-                        Range = reader.GetString(2),
+                        Category = reader.GetString(1),
+                        Description = reader.GetString(2),
                         Reference = reader.GetString(3),
                         Page = page == null ? null : Convert.ToInt32(page) as int?
                     };
