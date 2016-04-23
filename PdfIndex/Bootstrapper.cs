@@ -23,7 +23,7 @@ namespace PdfIndex
             _container.Singleton<IWindowManager, WindowManager>();
             _container.Singleton<IEventAggregator, EventAggregator>();
             _container.Singleton<IPdfRecordRepository, ExcelIndexPdfRecordRepository>();
-            _container.Singleton<IPdfRecordReader, SystemDefaultPdfRecordReader>();
+            _container.Singleton<IPdfRecordReader, WebBrowserPdfRecordReader>();
             _container.Instance<IDialogCoordinator>(DialogCoordinator.Instance);
             _container.PerRequest<ShellViewModel>();
             _container.Singleton<RecordsViewModelFactory>();

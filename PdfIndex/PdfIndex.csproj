@@ -97,6 +97,7 @@
     </Compile>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Infrastructure\SystemDefaultPdfRecordReader.cs" />
+    <Compile Include="Infrastructure\WebBrowserPdfRecordReader.cs" />
     <Compile Include="ViewModels\RecordsViewModel.cs" />
     <Compile Include="ViewModels\RecordsViewModelFactory.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
