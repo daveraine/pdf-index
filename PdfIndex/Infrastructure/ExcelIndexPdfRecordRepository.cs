@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Excel;
 using PdfIndex.Core;
+using System.Data;
 
 namespace PdfIndex.Infrastructure
 {
@@ -12,27 +14,20 @@ namespace PdfIndex.Infrastructure
         {
             try
             {
-                var records = new List<PdfRecord>();
-
                 using (var stream = File.Open("index.xlsx", FileMode.Open, FileAccess.Read))
                 using (var reader = ExcelReaderFactory.CreateOpenXmlReader(stream))
                 {
-                    while (reader.Read())
+                    reader.IsFirstRowAsColumnNames = true;
+
+                    return reader.AsDataSet().Tables[0].AsEnumerable().Select(x => new PdfRecord
                     {
-                        var page = reader.GetValue(4);
-
-                        records.Add(new PdfRecord
-                        {
-                            Title = reader.GetString(0),
-                            Category = reader.GetString(1),
-                            Description = reader.GetString(2),
-                            Reference = reader.GetString(3),
-                            Page = page == null ? null : Convert.ToInt32(page) as int?
-                        });
-                    }
+                        Title = x.Field<string>("TITLE"),
+                        Category = x.Field<string>("CATEGORY"),
+                        Description = x.Field<string>("DESCRIPTION"),
+                        Reference = x.Field<string>("REFERENCE"),
+                        Page = x.Field<double?>("PAGE").HasValue ? Convert.ToInt32(x.Field<double?>("PAGE").Value) : (int?)null
+                    });
                 }
-
-                return records;
             }
             catch (FileNotFoundException ex)
             {
