@@ -52,7 +52,15 @@ namespace PdfIndex.ViewModels
             }
         }
 
-        public IEnumerable<string> Categories { get; set; }
+        private IEnumerable<string> _categories;
+        public IEnumerable<string> Categories {
+            get { return _categories; }
+            set
+            {
+                _categories = value;
+                NotifyOfPropertyChange(() => Categories);
+            }
+        }
 
         public void Handle(ShowMessageEvent message)
         {
