@@ -19,14 +19,7 @@ namespace PdfIndex.Infrastructure
                 {
                     reader.IsFirstRowAsColumnNames = true;
 
-                    return reader.AsDataSet().Tables[0].AsEnumerable().Select(x => new PdfRecord
-                    {
-                        Title = x.Field<string>("TITLE"),
-                        Category = x.Field<string>("CATEGORY"),
-                        Description = x.Field<string>("DESCRIPTION"),
-                        Reference = x.Field<string>("REFERENCE"),
-                        Page = x.Field<double?>("PAGE").HasValue ? Convert.ToInt32(x.Field<double?>("PAGE").Value) : (int?)null
-                    });
+                    return reader.AsDataSet().Tables[0].AsEnumerable().Select(ParseRow);
                 }
             }
             catch (FileNotFoundException ex)
@@ -37,6 +30,31 @@ namespace PdfIndex.Infrastructure
             {
                 // File already open?
                 throw new DataAccessException("Could not load from index.xlsx. Make sure the file is not already open and try again.", ex);
+            }
+        }
+
+        private static PdfRecord ParseRow(DataRow row)
+        {
+            try
+            {
+                var page = row.Field<double?>("PAGE");
+
+                return new PdfRecord
+                {
+                    Title = row.Field<string>("TITLE"),
+                    Category = row.Field<string>("CATEGORY"),
+                    Description = row.Field<string>("DESCRIPTION"),
+                    Reference = row.Field<string>("REFERENCE"),
+                    Page = page.HasValue ? Convert.ToInt32(page.Value) : (int?)null
+                };
+            }
+            catch (ArgumentException ex)
+            {
+                throw new DataAccessException("Invalid column names in index.xlsx", ex);
+            }
+            catch (InvalidCastException ex)
+            {
+                throw new DataAccessException("Invalid data in index.xlsx", ex);
             }
         }
     }
