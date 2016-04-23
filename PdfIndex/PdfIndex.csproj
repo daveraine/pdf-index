@@ -87,6 +87,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Core\DataAccessException.cs" />
+    <Compile Include="Core\IPdfRecordReader.cs" />
     <Compile Include="Infrastructure\ExcelIndexPdfRecordRepository.cs" />
     <Compile Include="Core\PdfRecord.cs" />
     <Compile Include="Core\IPdfRecordRepository.cs" />
@@ -95,6 +96,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Infrastructure\SystemDefaultPdfRecordReader.cs" />
     <Compile Include="ViewModels\RecordsViewModel.cs" />
     <Compile Include="ViewModels\RecordsViewModelFactory.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
