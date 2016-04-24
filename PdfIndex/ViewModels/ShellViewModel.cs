@@ -23,7 +23,7 @@ namespace PdfIndex.ViewModels
             _dialogs = dialogs;
             _viewModelFactory = viewModelFactory;            
 
-            DisplayName = "PDF Index";
+            DisplayName = "Index";
         }
 
         private string _selectedCategory;
