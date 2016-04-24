@@ -9,7 +9,10 @@
         xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
         mc:Ignorable="d"
         Dialog:DialogParticipation.Register="{Binding}"
-        Title="PDF Index" Height="600" MinHeight="600" Width="800" MinWidth="800" TitleCaps="False" BorderBrush="{StaticResource AccentColorBrush}">
+        Title="PDF Index" Height="600" MinHeight="600" Width="800" MinWidth="800" TitleCaps="False" BorderBrush="{StaticResource AccentColorBrush}"
+        WindowTitleBrush="{StaticResource GrayBrush8}"
+        TitleForeground="{StaticResource BlackBrush}" NonActiveWindowTitleBrush="{StaticResource GrayBrush8}"
+        OverrideDefaultWindowCommandsBrush="{StaticResource BlackBrush}">
     <Controls:MetroContentControl>
         <Grid>
             <Grid.ColumnDefinitions>
