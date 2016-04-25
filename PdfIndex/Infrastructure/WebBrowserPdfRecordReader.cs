@@ -1,7 +1,7 @@
-﻿using PdfIndex.Core;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.IO;
 using System.Text;
+using PdfIndex.Core;
 
 namespace PdfIndex.Infrastructure
 {
@@ -12,8 +12,9 @@ namespace PdfIndex.Infrastructure
             var fileName = string.Format("{0}.{1}", record.Reference, "pdf");
             if (File.Exists(fileName))
             {
-                var uri = new StringBuilder("file:///");
-                uri.Append(Path.GetFullPath(fileName));
+                var uri = new StringBuilder();
+                uri.AppendFormat("http://localhost:{0}/", HttpServerConfiguration.Port);
+                uri.Append(fileName);
                 if (record.Page.HasValue)
                 {
                     uri.AppendFormat("#page={0}", record.Page.Value);

@@ -18,6 +18,12 @@ namespace PdfIndex
             Initialize();
         }
 
+        private static void StartHttpServer()
+        {
+            var httpServer = HttpServerConfiguration.Create();
+            httpServer.Start();
+        }
+
         protected override void Configure()
         {
             _container.Singleton<IWindowManager, WindowManager>();
@@ -47,6 +53,8 @@ namespace PdfIndex
 
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
+            StartHttpServer();
+
             DisplayRootViewFor<ShellViewModel>();
         }
     }
