@@ -18,18 +18,12 @@ namespace PdfIndex
             Initialize();
         }
 
-        private static void StartHttpServer()
-        {
-            var httpServer = HttpServerConfiguration.Create();
-            httpServer.Start();
-        }
-
         protected override void Configure()
         {
             _container.Singleton<IWindowManager, WindowManager>();
             _container.Singleton<IEventAggregator, EventAggregator>();
             _container.Singleton<IPdfRecordRepository, ExcelIndexPdfRecordRepository>();
-            _container.Singleton<IPdfRecordReader, WebBrowserPdfRecordReader>();
+            _container.Singleton<IPdfRecordReader, SystemDefaultPdfRecordReader>();
             _container.Instance<IDialogCoordinator>(DialogCoordinator.Instance);
             _container.PerRequest<ShellViewModel>();
             _container.Singleton<RecordsViewModelFactory>();
@@ -53,8 +47,6 @@ namespace PdfIndex
 
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
-            StartHttpServer();
-
             DisplayRootViewFor<ShellViewModel>();
         }
     }
