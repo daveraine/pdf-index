@@ -9,35 +9,49 @@
         xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
         mc:Ignorable="d"
         Dialog:DialogParticipation.Register="{Binding}"
-        Height="600" MinHeight="600" Width="800" MinWidth="800" TitleCaps="False" BorderBrush="{StaticResource AccentColorBrush}"
+        Height="600" MinHeight="600" Width="950" MinWidth="950" TitleCaps="False" BorderBrush="{StaticResource AccentColorBrush}"
         WindowTitleBrush="{StaticResource GrayBrush8}"
         TitleForeground="{StaticResource BlackBrush}" NonActiveWindowTitleBrush="{StaticResource GrayBrush8}"
         OverrideDefaultWindowCommandsBrush="{StaticResource BlackBrush}">
     <Controls:MetroContentControl>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="250" />
+                <ColumnDefinition Width="300" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <ListBox x:Name="Categories" Grid.Column="0"
                      SelectionMode="Single"
-                     Background="{StaticResource GrayBrush10}">
+                     Background="{StaticResource GrayBrush10}"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MetroListBoxItem}">
                         <Setter Property="ContentTemplate">
                             <Setter.Value>
                                 <DataTemplate>
                                     <StackPanel Margin="10,15">
-                                        <TextBlock Text="{Binding}" FontSize="16" />
+                                        <TextBlock Text="{Binding}" FontSize="16" TextTrimming="CharacterEllipsis" />
                                     </StackPanel>
                                 </DataTemplate>
                             </Setter.Value>
                         </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <StackPanel Margin="10,15">
+                                                <TextBlock Text="{Binding}" FontSize="16" TextWrapping="Wrap" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </Style.Triggers>
                     </Style>
                 </ListBox.ItemContainerStyle>
             </ListBox>
             <ScrollViewer Grid.Column="1">
-                <ContentControl x:Name="ActiveItem" Margin="10" Width="500" HorizontalAlignment="Left" />
+                <ContentControl x:Name="ActiveItem" Margin="10" Width="600" HorizontalAlignment="Left" />
             </ScrollViewer>
         </Grid>
     </Controls:MetroContentControl>
