@@ -14,7 +14,7 @@ namespace PdfIndex.Infrastructure
         {
             try
             {
-                using (var stream = File.Open("index.xlsx", FileMode.Open, FileAccess.Read))
+                using (var stream = File.Open("index.xlsx", FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
                 using (var reader = ExcelReaderFactory.CreateOpenXmlReader(stream))
                 {
                     reader.IsFirstRowAsColumnNames = true;
